@@ -1,0 +1,42 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="row g-3">
+    <h4>Inscripción</h4>
+    <p>Completá el formulario y solicitá información</p>
+    <div class="col-md-6">
+        <label for="inputEmail" class="form-label">Nombre</label>
+        <input formControlName="name" type="text" class="form-control" [class.is-valid]="nameControl?.valid"
+            aria-label="Nombre">
+    </div>
+    <div class="col-md-6">
+        <label for="inputEmail" class="form-label">Apellido</label>
+        <input formControlName="lastName" type="text" class="form-control" [class.is-valid]="lastNameControl?.valid"
+            aria-label="Apellido">
+    </div>
+    <div class="col-md-6">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input formControlName="email" type="email" class="form-control" [class.is-valid]="emailControl?.valid"
+            id="inputEmail">
+    </div>
+    <div class="col-md-4">
+        <label for="inputClase" class="form-label">Danza</label>
+        <select id="inputClase" class="form-select">
+            <option selected>Selecciona...</option>
+            <option>Danzas Clásicas</option>
+            <option>Danzas Contemporaneas</option>
+            <option>Urbano</option>
+            <option>Danzas Arabes</option>
+            <option>Danzas Folkloricas</option>
+            <option>Infantiles</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Check! Y nos comunicamos con vos
+            </label>
+        </div>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
