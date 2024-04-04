@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -31,7 +32,17 @@ export class ReactiveFormsComponent {
   constructor(private formBuilder: FormBuilder) {}
 
   onSubmit(): void {
-    if (this.myForm.status == 'VALID') alert('Formulario enviado');
-    else alert('Completar todos los campos requeridos');
+    if (this.myForm.status == 'VALID')
+      Swal.fire({
+        icon: 'success',
+        title: 'OK',
+        text: 'Formulario enviado',
+      });
+    else
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Completar todos los campos requeridos',
+      });
   }
 }
