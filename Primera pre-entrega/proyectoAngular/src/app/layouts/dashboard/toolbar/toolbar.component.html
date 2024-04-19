@@ -1,5 +1,20 @@
-<mat-toolbar>
-    <div class="toolbaar-container">
-        <p>Bienvenidos a nuestra escuela de danzas</p>
+<mat-drawer-container class="example-container" autosize>
+    <div class="example-sidenav-content">
+        <mat-toolbar color="accent">
+            <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+                aria-label="Example icon-button with menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Clases</span>
+        </mat-toolbar>
     </div>
-</mat-toolbar>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>Danzas</p>
+        @if (showFiller) {
+        <p>Lorem, ipsum dolor sit amet consectetur.</p>
+        }
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+            Mas info...
+        </button>
+    </mat-drawer>
+</mat-drawer-container>
