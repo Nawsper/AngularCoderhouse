@@ -9,9 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { FullNamePipe } from './pipes/full-name.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [FullNamePipe],
   imports: [CommonModule],
   exports: [
     MatTableModule,
@@ -23,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     ReactiveFormsModule,
     MatIconModule,
+    FullNamePipe,
   ],
 })
 export class SharedModule {}

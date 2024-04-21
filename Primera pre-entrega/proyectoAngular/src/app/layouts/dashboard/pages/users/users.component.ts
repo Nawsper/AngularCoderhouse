@@ -15,6 +15,7 @@ export class UsersComponent {
     'firstName',
     'lastName',
     'email',
+    'userName',
     'role',
     'createdDate',
     'actions',
