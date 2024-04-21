@@ -6,31 +6,20 @@ import { DashboardComponent } from './dashboard.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MenuComponent } from './menu/menu.component';
-import { ContentComponent } from './content/content.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ReactiveFormsComponent } from './components/reactive-forms/reactive-forms.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { UsersModule } from './pages/users/users.module';
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    ToolbarComponent,
-    MenuComponent,
-    ContentComponent,
-    ReactiveFormsComponent,
-  ],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatSidenavModule,
     MatToolbarModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
+    UsersModule,
   ],
   exports: [DashboardComponent],
 })

@@ -1,16 +1,27 @@
-<div class="wrapper">
-    <div class="container">
-        <div class="menu-container">
-            <div class="toolbaar-container">
-                <h1 class="divider">{{ title }}</h1>
-                <app-menu></app-menu>
-            </div>
-            <app-toolbar></app-toolbar>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>Clases</p>
+        @if (showFiller) {
+        <span>Danzas Clásicas</span>
+        }
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+            Toggle extra text
+        </button>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <mat-toolbar color="accent">
+            <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+                aria-label="Example icon-button with menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Dance Academy</span>
+        </mat-toolbar>
+
+        <div style="padding: 1rem;">
+            <app-users></app-users>
         </div>
-        <div class="divider" role="separator" aria-label="Divider"></div>
-        <div class="content-container">
-            <app-content></app-content>
-            <app-reactive-forms></app-reactive-forms>
-        </div>
+
     </div>
-</div>
+
+</mat-drawer-container>
