@@ -10,9 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FullNamePipe } from './pipes/full-name.pipe';
+import { LettersizesDirective } from './directives/lettersizes.directive';
 
 @NgModule({
-  declarations: [FullNamePipe],
+  declarations: [FullNamePipe, LettersizesDirective],
   imports: [CommonModule],
   exports: [
     MatTableModule,
@@ -25,6 +26,7 @@ import { FullNamePipe } from './pipes/full-name.pipe';
     ReactiveFormsModule,
     MatIconModule,
     FullNamePipe,
+    LettersizesDirective,
   ],
 })
 export class SharedModule {}
