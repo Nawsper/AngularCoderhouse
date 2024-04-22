@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Crear Usuario</h2>
+<div mat-dialog-content>
+    <form [formGroup]="userForm">
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field class="w-100 p-2" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="firstName" matInput />
+                    <mat-hint>Campo obligatorio</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="w-100 p-2" appearance="fill">
+                    <mat-label>Apellido</mat-label>
+                    <input formControlName="lastName" matInput />
+                    <mat-hint>Campo obligatorio</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-8">
+                <mat-form-field class="w-100 p-2" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput />
+                    <mat-hint>Campo obligatorio</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field class="w-100 p-2" appearance="fill">
+                    <mat-label>Rol</mat-label>
+                    <mat-select formControlName="role">
+                        <mat-option value="alumno">Alumno</mat-option>
+                        <mat-option value="profesor">Profesor</mat-option>
+                        <mat-option value="admin">Administrador</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="d-flex justify-content-end" mat-dialog-actions>
+    <button mat-dialog-close mat-button>Cancelar</button>
+    <button (click)="onSave()" mat-button>Guardar</button>
+</div>
