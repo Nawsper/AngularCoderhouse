@@ -11,14 +11,34 @@
 
     <div class="example-sidenav-content">
         <mat-toolbar color="accent">
-            <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
-                aria-label="Example icon-button with menu icon">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span>Dance Academy</span>
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <div>
+                    <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+                        aria-label="Example icon-button with menu icon">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                    <span>Dance Academy</span>
+                </div>
+
+                @if (authUser$ | async; as user){
+                <div>{{ user?.firstName}}</div>
+                }
+
+            </div>
+
         </mat-toolbar>
 
         <div style="padding: 1rem;">
+            <div class="d-flex justify-content-end">
+                <button (click)="login()" mat-button color="primary">
+                    Iniciar sesion
+                </button>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button (click)="logout()" mat-button color="warn">
+                    Cerrar sesion
+                </button>
+            </div>
             <app-users></app-users>
         </div>
 
