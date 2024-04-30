@@ -1,0 +1,49 @@
+<mat-drawer-container class="dashboard-container" autosize>
+    <mat-drawer #drawer class="dashboard-sidebar" mode="side">
+        <mat-nav-list>
+            <a #homeLink="routerLinkActive" routerLinkActive [activated]="homeLink.isActive" routerLink="home"
+                mat-list-item>Inicio</a>
+            <a #alumnosLink="routerLinkActive" routerLinkActive [activated]="alumnosLink.isActive" routerLink="alumnos"
+                mat-list-item>Alumnos</a>
+            <a #clasesLink="routerLinkActive" routerLinkActive [activated]="clasesLink.isActive" routerLink="clases"
+                mat-list-item>Clases</a>
+            <a (click)="logout()" mat-list-item>Cerrar sesion</a>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <mat-toolbar color="accent">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <div>
+                    <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+                        aria-label="Example icon-button with menu icon">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                    <span>Dance Academy</span>
+                </div>
+
+                @if (authUser$ | async; as user){
+                <div>{{ user?.firstName}}</div>
+                }
+
+            </div>
+
+        </mat-toolbar>
+
+        <div style="padding: 1rem;">
+            <div class="d-flex justify-content-end">
+                <button (click)="login()" mat-button color="primary">
+                    Iniciar sesion
+                </button>
+            </div>
+            <!-- <div class="d-flex justify-content-end">
+                <button (click)="logout()" mat-button color="warn">
+                    Cerrar sesion
+                </button>
+            </div> -->
+            <app-users></app-users>
+        </div>
+
+    </div>
+
+</mat-drawer-container>
