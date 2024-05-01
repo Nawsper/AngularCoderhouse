@@ -5,8 +5,13 @@ import { AuthComponent } from './layouts/auth/auth.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    //dashboard
+    path: 'danceacademy',
     component: DashboardComponent,
+    loadChildren: () =>
+      import('./layouts/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
   },
   {
     path: 'auth',
@@ -14,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/dashboard',
+    redirectTo: '/danceacademy',
   },
 ];
 
