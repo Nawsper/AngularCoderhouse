@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IUser } from './models';
-import { of, Observable, delay, throwError, first } from 'rxjs';
+import { of, Observable, delay } from 'rxjs';
 
 const USERS_DB: IUser[] = [
   {
@@ -88,10 +88,10 @@ const USERS_DB: IUser[] = [
 @Injectable({ providedIn: 'root' })
 export class UsersService {
   getUsers(): Observable<IUser[]> {
-    return of(USERS_DB).pipe(delay(1500));
+    return of(USERS_DB).pipe(delay(1000));
   }
 
-  getUsersById(id: number): Observable<IUser | undefined> {
-    return of(USERS_DB.find((element) => element.id === id));
+  getUserById(id: number): Observable<IUser | undefined> {
+    return of(USERS_DB.find((el) => el.id === id)).pipe(delay(1000));
   }
 }

@@ -1,6 +1,6 @@
 <h2>Usuarios</h2>
 
-<mat-spinner *ngIf="loading"></mat-spinner>
+<mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
 
 <div class="d-flex justify-content-end">
     <button (click)="openDialog()" mat-button color="accent">

@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
     'actions',
   ];
 
-  loading = true;
+  loading = false;
 
   users: IUser[] = [];
 
