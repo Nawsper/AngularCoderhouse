@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { ClasesRoutingModule } from './clases-routing.module';
 import { ClasesComponent } from './clases.component';
-
+import { MatListModule } from '@angular/material/list';
+import { SharedModule } from '../../../../shared/shared.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
-  declarations: [
-    ClasesComponent
-  ],
+  declarations: [ClasesComponent],
   imports: [
     CommonModule,
-    ClasesRoutingModule
-  ]
+    ClasesRoutingModule,
+    MatListModule,
+    SharedModule,
+    MatProgressBarModule,
+  ],
 })
-export class ClasesModule { }
+export class ClasesModule {}
