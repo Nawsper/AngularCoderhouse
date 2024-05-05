@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IClase } from './models/clase.model';
-import { ClasesService } from './clases.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ClasesDialogComponent } from './components/clases-dialog/clases-dialog.component';
 import Swal from 'sweetalert2';
+import { ClasesService } from './clases.service';
 
 @Component({
   selector: 'app-clases',
@@ -15,22 +17,42 @@ export class ClasesComponent implements OnInit {
 
   loading = false;
 
-  constructor(private clasesService: ClasesService) {}
+  constructor(
+    private matDialog: MatDialog,
+    private clasesService: ClasesService
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
     this.clasesService.getClases().subscribe({
-      next: (users) => {
-        console.log('next: ', users);
-        this.clases = users;
+      next: (clases) => {
+        console.log('Clases cargadas:', clases);
+        this.clases = clases;
       },
       error: (err) => {
-        console.log('error: ', err);
-        Swal.fire('Error', 'Ocurrio un error', 'error');
+        console.log('Error al cargar clases:', err);
+        Swal.fire('Error', 'Ocurrió un error al cargar las clases', 'error');
       },
       complete: () => {
         this.loading = false;
       },
     });
+  }
+
+  openDialog(signUpClass?: IClase): void {
+    this.matDialog
+      .open(ClasesDialogComponent, { data: signUpClass })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          setTimeout(() => {
+            Swal.fire(
+              '¡Inscripción Exitosa!',
+              'El formulario fue enviado correctamente',
+              'success'
+            );
+          }, 500);
+        }
+      });
   }
 }

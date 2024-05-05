@@ -6,9 +6,10 @@ import { ClasesComponent } from './clases.component';
 import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../../../../shared/shared.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ClasesDialogComponent } from './components/clases-dialog/clases-dialog.component';
 
 @NgModule({
-  declarations: [ClasesComponent],
+  declarations: [ClasesComponent, ClasesDialogComponent],
   imports: [
     CommonModule,
     ClasesRoutingModule,
