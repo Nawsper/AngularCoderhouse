@@ -1,3 +1,16 @@
 <main style="height: 100vh">
-    <button (click)="login()" color="primary" mat-flat-button>Iniciar sesion</button>
+    <div class="container mt-4">
+        <h2>Iniciar Sesión</h2>
+        <form>
+            <mat-form-field class="w-100">
+                <input matInput placeholder="Correo electrónico" type="email">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput placeholder="Contraseña" type="password">
+            </mat-form-field>
+            <button (click)="login()" mat-flat-button color="accent">Iniciar Sesión</button>
+        </form>
+    </div>
+
+
 </main>
