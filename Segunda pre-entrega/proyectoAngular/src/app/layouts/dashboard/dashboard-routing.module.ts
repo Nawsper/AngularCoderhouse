@@ -6,6 +6,11 @@ const routes: Routes = [
     path: '',
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home',
+      },
+      {
         path: 'home',
         loadChildren: () =>
           import('./pages/home/home.module').then((m) => m.HomeModule),
@@ -29,6 +34,18 @@ const routes: Routes = [
         path: 'clases',
         loadChildren: () =>
           import('./pages/clases/clases.module').then((m) => m.ClasesModule),
+      },
+    ],
+  },
+  {
+    path: '',
+    children: [
+      {
+        path: 'inscripciones',
+        loadChildren: () =>
+          import('./pages/inscripciones/inscripciones.module').then(
+            (m) => m.InscripcionesModule
+          ),
       },
     ],
   },

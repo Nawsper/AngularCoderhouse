@@ -54,4 +54,8 @@ export class ClasesService {
   getClases(): Observable<IClase[]> {
     return of(CLASES_DB).pipe(delay(1000));
   }
+
+  getClaseById(id: number): Observable<IClase | undefined> {
+    return of(CLASES_DB.find((el) => el.id === id)).pipe(delay(1000));
+  }
 }
