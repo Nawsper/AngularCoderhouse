@@ -1,0 +1,17 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
+
+<div [ngClass]="!loading?'d-block':'d-none'">
+    <div class="container mt-4">
+        <h2>Información de nuestra clase</h2>
+        <div *ngIf="clase$ | async as clase">
+            <mat-card class="mt-3">
+                <mat-card-header>
+                    <mat-card-title>{{ clase.nombre }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{ clase.descripcion }}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

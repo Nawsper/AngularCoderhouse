@@ -1,0 +1,40 @@
+<h2>Inscripciones</h2>
+
+<mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
+
+<ng-container *ngIf="!loading">
+    <table mat-table [dataSource]="inscrip" class="mat-elevation-z8">
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef appLettersizes>No. de inscripción</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef appLettersizes>Clase</th>
+            <td mat-cell *matCellDef="let element"> {{element.clase.nombre}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef appLettersizes> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.alumno.email}} </td>
+        </ng-container>
+
+        <!-- UserName Column -->
+        <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef appLettersizes>Nombre de Usuario</th>
+            <td mat-cell *matCellDef="let element"> {{ element.alumno | fullName }} </td>
+        </ng-container>
+
+        <!-- Created Column -->
+        <ng-container matColumnDef="fecha_inscripcion">
+            <th mat-header-cell *matHeaderCellDef appLettersizes>Fecha de inscripción</th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha_inscripcion | date}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</ng-container>
