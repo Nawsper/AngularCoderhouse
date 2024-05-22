@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IInscripcion } from './models';
+import { IInscripcion, IInscripcionData } from './models';
 import { Observable, delay, of } from 'rxjs';
 
 let INSCRIP_DB: IInscripcion[] = [
@@ -46,8 +46,8 @@ export class InscripcionesService {
   getInscrip(): Observable<IInscripcion[]> {
     return of(INSCRIP_DB).pipe(delay(1000));
   }
-  createInscrip(data: IInscripcion) {
-    INSCRIP_DB.push(data);
+  createInscrip(data: IInscripcionData) {
+    INSCRIP_DB.push({ ...data, id: new Date().getTime() });
     return of(INSCRIP_DB);
   }
   updateInscrip(id: number, data: IInscripcion) {

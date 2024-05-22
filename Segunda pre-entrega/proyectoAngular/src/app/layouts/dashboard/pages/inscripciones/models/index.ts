@@ -7,3 +7,9 @@ export interface IInscripcion {
   alumno: IUser;
   fecha_inscripcion: Date;
 }
+
+export interface IInscripcionData {
+  clase: IClase;
+  alumno: IUser;
+  fecha_inscripcion: Date;
+}
