@@ -18,10 +18,6 @@ export class DashboardComponent {
     this.authUser$ = this.authService.authUser$;
   }
 
-  login(): void {
-    this.authService.login();
-  }
-
   logout(): void {
     this.authService.logout();
     this.router.navigate(['auth']);
