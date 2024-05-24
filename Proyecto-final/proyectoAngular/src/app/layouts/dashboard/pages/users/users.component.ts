@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import Swal from 'sweetalert2';
 import { UsersService } from './users.service';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -26,10 +28,15 @@ export class UsersComponent implements OnInit {
 
   users: IUser[] = [];
 
+  authUser$: Observable<IUser | null>;
+
   constructor(
     private matDialog: MatDialog,
-    private usersService: UsersService
-  ) {}
+    private usersService: UsersService,
+    private authService: AuthService
+  ) {
+    this.authUser$ = this.authService.authUser$;
+  }
 
   ngOnInit(): void {
     this.loading = true;

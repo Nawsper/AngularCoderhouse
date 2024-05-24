@@ -5,7 +5,8 @@
                 mat-list-item>Inicio</a>
             <a #clasesLink="routerLinkActive" routerLinkActive [activated]="clasesLink.isActive" routerLink="clases"
                 mat-list-item>Clases</a>
-            <a #alumnosLink="routerLinkActive" routerLinkActive [activated]="alumnosLink.isActive" routerLink="alumnos"
+            <a *ngIf="(authUser$ | async)?.role === 'admin' || (authUser$ | async)?.role === 'profesor'"
+                #alumnosLink="routerLinkActive" routerLinkActive [activated]="alumnosLink.isActive" routerLink="alumnos"
                 mat-list-item>Alumnos</a>
             <a #inscripcionesLink="routerLinkActive" routerLinkActive [activated]="inscripcionesLink.isActive"
                 routerLink="inscripciones" mat-list-item>Inscripciones</a>

@@ -59,12 +59,14 @@
                 <button [routerLink]="element.id" mat-mini-fab color="accent">
                     <mat-icon>visibility</mat-icon>
                 </button>
-                <button (click)="openDialog(element)" mat-mini-fab color="primary">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button (click)="onDeleteUser(element.id)" mat-mini-fab color="warn">
-                    <mat-icon>delete</mat-icon>
-                </button>
+                <ng-container *ngIf="(authUser$ | async)?.role === 'admin'">
+                    <button (click)="openDialog(element)" mat-mini-fab color="primary">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button (click)="onDeleteUser(element.id)" mat-mini-fab color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </ng-container>
             </td>
         </ng-container>
 

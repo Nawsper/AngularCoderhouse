@@ -11,7 +11,7 @@ export class AuthService {
     firstName: 'Username',
     lastName: 'userLastName',
     email: 'user@mail.com',
-    role: 'alumno',
+    role: 'profesor',
     createdDate: new Date(),
   };
 
