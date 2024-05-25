@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from '../../layouts/dashboard/pages/users/models';
 import { LoginData } from '../../layouts/auth/models';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -11,7 +11,7 @@ export class AuthService {
     firstName: 'Username',
     lastName: 'userLastName',
     email: 'user@mail.com',
-    role: 'profesor',
+    role: 'admin',
     createdDate: new Date(),
   };
 

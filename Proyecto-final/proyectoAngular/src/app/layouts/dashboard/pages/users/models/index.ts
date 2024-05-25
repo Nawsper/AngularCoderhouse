@@ -8,3 +8,11 @@ export interface IUser {
   role: UserRole;
   createdDate: Date;
 }
+
+export interface CreateUserPayload {
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  role: UserRole | null;
+  createdDate: Date | null;
+}

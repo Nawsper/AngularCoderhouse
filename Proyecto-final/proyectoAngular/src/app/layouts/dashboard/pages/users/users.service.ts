@@ -1,97 +1,38 @@
 import { Injectable } from '@angular/core';
-import { IUser } from './models';
-import { of, Observable, delay } from 'rxjs';
-
-const USERS_DB: IUser[] = [
-  {
-    id: 1,
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
-    role: 'profesor',
-    createdDate: new Date(),
-  },
-  {
-    id: 2,
-    firstName: 'Jane',
-    lastName: 'Smith',
-    email: 'jane.smith@example.com',
-    role: 'profesor',
-    createdDate: new Date(),
-  },
-  {
-    id: 3,
-    firstName: 'Michael',
-    lastName: 'Johnson',
-    email: 'michael.johnson@example.com',
-    role: 'alumno',
-    createdDate: new Date(),
-  },
-  {
-    id: 4,
-    firstName: 'Emily',
-    lastName: 'Brown',
-    email: 'emily.brown@example.com',
-    role: 'admin',
-    createdDate: new Date(),
-  },
-  {
-    id: 5,
-    firstName: 'James',
-    lastName: 'Wilson',
-    email: 'james.wilson@example.com',
-    role: 'alumno',
-    createdDate: new Date(),
-  },
-  {
-    id: 6,
-    firstName: 'Emma',
-    lastName: 'Taylor',
-    email: 'emma.taylor@example.com',
-    role: 'alumno',
-    createdDate: new Date(),
-  },
-  {
-    id: 7,
-    firstName: 'Daniel',
-    lastName: 'Anderson',
-    email: 'daniel.anderson@example.com',
-    role: 'alumno',
-    createdDate: new Date(),
-  },
-  {
-    id: 8,
-    firstName: 'Olivia',
-    lastName: 'Thomas',
-    email: 'olivia.thomas@example.com',
-    role: 'alumno',
-    createdDate: new Date(),
-  },
-  {
-    id: 9,
-    firstName: 'William',
-    lastName: 'Jackson',
-    email: 'william.jackson@example.com',
-    role: 'alumno',
-    createdDate: new Date(),
-  },
-  {
-    id: 10,
-    firstName: 'Sophia',
-    lastName: 'White',
-    email: 'sophia.white@example.com',
-    role: 'alumno',
-    createdDate: new Date(),
-  },
-];
+import { CreateUserPayload, IUser } from './models';
+import { of, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
+  constructor(private httpClient: HttpClient) {}
+
   getUsers(): Observable<IUser[]> {
-    return of(USERS_DB).pipe(delay(1000));
+    return this.httpClient.get<IUser[]>(environment.baseAPIURL + '/users');
   }
 
   getUserById(id: number): Observable<IUser | undefined> {
-    return of(USERS_DB.find((el) => el.id === id)).pipe(delay(1000));
+    return this.httpClient.get<IUser>(`${environment.baseAPIURL}/users/${id}`);
+  }
+
+  createUser(payload: CreateUserPayload): Observable<IUser> {
+    return this.httpClient.post<IUser>(
+      `${environment.baseAPIURL}/users`,
+      payload
+    );
+  }
+
+  updateUser(id: number, payload: CreateUserPayload): Observable<IUser> {
+    return this.httpClient.put<IUser>(
+      `${environment.baseAPIURL}/users/${id}`,
+      payload
+    );
+  }
+
+  deleteUser(id: number): Observable<void> {
+    return this.httpClient.delete<void>(
+      `${environment.baseAPIURL}/users/${id}`
+    );
   }
 }

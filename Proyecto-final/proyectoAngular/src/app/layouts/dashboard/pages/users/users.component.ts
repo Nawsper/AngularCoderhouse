@@ -59,44 +59,62 @@ export class UsersComponent implements OnInit {
     this.matDialog
       .open(UserDialogComponent, { data: editingUser })
       .afterClosed()
-      .subscribe({
-        next: (result) => {
-          if (result) {
-            if (editingUser) {
-              this.users = this.users.map((u) =>
-                u.id === editingUser.id ? { ...u, ...result } : u
-              );
-            } else {
-              result.id = new Date().getTime().toString().substring(0, 5);
-              result.createdDate = new Date();
-              this.users = [...this.users, result];
-            }
+      .subscribe((result) => {
+        if (result) {
+          if (editingUser) {
+            const updatedUser = { ...editingUser, ...result };
+            this.usersService
+              .updateUser(editingUser.id, updatedUser)
+              .subscribe({
+                next: (updatedUser) => {
+                  this.users = this.users.map((u) =>
+                    u.id === editingUser.id ? updatedUser : u
+                  );
+                },
+                error: (err) => {
+                  Swal.fire(
+                    'Error',
+                    'No se pudo actualizar el usuario',
+                    'error'
+                  );
+                },
+              });
+          } else {
+            result.createdDate = new Date();
+            this.usersService.createUser(result).subscribe({
+              next: (newUser) => {
+                this.users = [...this.users, newUser];
+              },
+              error: (err) => {
+                Swal.fire('Error', 'No se pudo crear el usuario', 'error');
+              },
+            });
           }
-          console.log(result);
-        },
+        }
       });
   }
 
   onDeleteUser(id: number): void {
-    if (this.users) {
-      Swal.fire({
-        title: '¿Estas seguro que quieres eliminar?',
-        text: 'No podrás revertir esto',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Si, borrar!',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: '¡Borrado!',
-            text: 'Tus datos han sido borrados.',
-            icon: 'success',
-          });
-        }
-      });
-    }
-    this.users = this.users.filter((u) => u.id != id);
+    Swal.fire({
+      title: '¿Estás seguro que quieres eliminar?',
+      text: 'No podrás revertir esto',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, borrar!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usersService.deleteUser(id).subscribe({
+          next: () => {
+            this.users = this.users.filter((u) => u.id !== id);
+            Swal.fire('¡Borrado!', 'El usuario ha sido eliminado.', 'success');
+          },
+          error: (err) => {
+            Swal.fire('Error', 'No se pudo eliminar el usuario', 'error');
+          },
+        });
+      }
+    });
   }
 }
