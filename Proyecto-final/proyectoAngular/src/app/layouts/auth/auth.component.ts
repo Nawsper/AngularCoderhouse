@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
-// import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,7 +9,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnDestroy, OnInit {
-  // authUserChangeSubscription?: Subscription;
   loginForm: FormGroup;
 
   constructor(
@@ -33,24 +31,9 @@ export class AuthComponent implements OnDestroy, OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // this.subscribeToAuthUserChange();
-  }
+  ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-    // this.authUserChangeSubscription?.unsubscribe();
-  }
-
-  // subscribeToAuthUserChange(): void {
-  //   this.authUserChangeSubscription = this.authService.authUser$.subscribe({
-  //     next: (authUser) => {
-  //       if (authUser != null) {
-  //         console.log('Usuario autenticado, redirigiendo...');
-  //         this.router.navigate(['danceacademy', 'home']);
-  //       }
-  //     },
-  //   });
-  // }
+  ngOnDestroy(): void {}
 
   login() {
     console.log('Iniciando proceso de login');

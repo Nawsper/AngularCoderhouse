@@ -13,6 +13,7 @@ import { FullNamePipe } from './pipes/full-name.pipe';
 import { LettersizesDirective } from './directives/lettersizes.directive';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [FullNamePipe, LettersizesDirective],
@@ -32,6 +33,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatIconModule,
     MatDividerModule,
+    MatToolbarModule,
   ],
 })
 export class SharedModule {}
