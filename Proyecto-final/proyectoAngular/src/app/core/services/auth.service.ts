@@ -20,17 +20,17 @@ export class AuthService {
 
   constructor(private router: Router) {}
 
-  login(data: LoginData): void {
-    console.log('Intentando iniciar sesión con', data);
-    if (data.email !== 'user@mail.com' || data.password !== '1234') {
-      alert('Correo o contraseña incorrectos');
-    } else {
-      console.log('Login exitoso');
-      this._authUser$.next(this.MOCK_AUTH_USER);
-      localStorage.setItem('accessToken', 'asdfghjkl');
-      this.router.navigate(['danceacademy', 'home']);
-    }
-  }
+  // login(data: LoginData): void {
+  //   console.log('Intentando iniciar sesión con', data);
+  //   if (data.email !== 'user@mail.com' || data.password !== '1234') {
+  //     alert('Correo o contraseña incorrectos');
+  //   } else {
+  //     console.log('Login exitoso');
+  //     this._authUser$.next(this.MOCK_AUTH_USER);
+  //     localStorage.setItem('accessToken', 'asdfghjkl');
+  //     this.router.navigate(['danceacademy', 'home']);
+  //   }
+  // }
 
   verifyToken(): boolean {
     const token = localStorage.getItem('accessToken');
