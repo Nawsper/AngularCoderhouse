@@ -3,3 +3,8 @@ export interface IClase {
   nombre: string;
   descripcion: string;
 }
+
+export interface CreateClasePayload {
+  nombre: string | null;
+  descripcion: string | null;
+}

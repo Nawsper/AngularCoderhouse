@@ -20,7 +20,7 @@ export class ClasesDetailComponent {
   ) {
     this.loading = true;
     this.clase$ = this.clasesService
-      .getClaseById(parseInt(this.activateRoute.snapshot.params['id']))
+      .getClaseById(this.activateRoute.snapshot.params['id'])
       .pipe(
         finalize(() => {
           this.loading = false;
