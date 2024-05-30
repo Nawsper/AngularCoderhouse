@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { InscripcionesService } from './inscripcciones.service';
 import { IInscripcion } from './models';
+import { Store } from '@ngrx/store';
+import {
+  selectInscripcionList,
+  selectInscripcionesError,
+  selectLoadingInscripcions,
+} from './store/inscripciones.selectors';
+import { InscripcionActions } from './store/inscripciones.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-inscripciones',
@@ -16,24 +23,20 @@ export class InscripcionesComponent implements OnInit {
     'fecha_inscripcion',
   ];
 
-  loading = false;
-  inscrip: IInscripcion[] = [];
-  constructor(private inscripcionService: InscripcionesService) {}
+  loadingInscripciones$: Observable<boolean>;
+  error$: Observable<unknown>;
+  inscripciones$: Observable<IInscripcion[]>;
+  constructor(private store: Store) {
+    this.loadingInscripciones$ = this.store.select(selectLoadingInscripcions);
+    this.inscripciones$ = this.store.select(selectInscripcionList);
+    this.error$ = this.store.select(selectInscripcionesError);
+  }
 
   ngOnInit(): void {
-    this.loading = true;
     this.loadInscrip();
   }
 
   loadInscrip() {
-    this.inscripcionService.getInscrip().subscribe({
-      next: (inscrip) => {
-        this.inscrip = inscrip;
-      },
-      error: () => {},
-      complete: () => {
-        this.loading = false;
-      },
-    });
+    this.store.dispatch(InscripcionActions.loadInscripciones());
   }
 }

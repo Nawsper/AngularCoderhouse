@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IInscripcion, IInscripcionData } from './models';
-import { Observable, delay, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 
 let INSCRIP_DB: IInscripcion[] = [
   {
@@ -43,8 +45,12 @@ let INSCRIP_DB: IInscripcion[] = [
 
 @Injectable({ providedIn: 'root' })
 export class InscripcionesService {
+  constructor(private http: HttpClient) {}
+
   getInscrip(): Observable<IInscripcion[]> {
-    return of(INSCRIP_DB).pipe(delay(1000));
+    return this.http.get<IInscripcion[]>(
+      `${environment.baseAPIURL}/inscripciones`
+    );
   }
   createInscrip(data: IInscripcionData) {
     INSCRIP_DB.push({ ...data, id: new Date().getTime() });

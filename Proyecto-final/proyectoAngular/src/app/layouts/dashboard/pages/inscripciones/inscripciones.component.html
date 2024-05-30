@@ -1,9 +1,9 @@
 <h2>Inscripciones</h2>
 
-<mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
+<!-- <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar> -->
 
-<ng-container *ngIf="!loading">
-    <table mat-table [dataSource]="inscrip" class="mat-elevation-z8">
+<ng-container *ngIf="loadingInscripciones$">
+    <table mat-table [dataSource]="inscripciones$" class="mat-elevation-z8">
         <!-- Id Column -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef appLettersizes>No. de inscripción</th>

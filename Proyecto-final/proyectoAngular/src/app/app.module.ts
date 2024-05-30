@@ -9,7 +9,8 @@ import { AuthModule } from './layouts/auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { rootReducer } from './store';
+import { rootReducer, metaReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,8 +20,9 @@ import { rootReducer } from './store';
     DashboardModule,
     AuthModule,
     HttpClientModule,
-    StoreModule.forRoot(rootReducer, {}),
+    StoreModule.forRoot(rootReducer, { metaReducers: metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
