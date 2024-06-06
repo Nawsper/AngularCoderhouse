@@ -6,11 +6,6 @@ import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/danceacademy/home',
-    pathMatch: 'full',
-  },
-  {
     path: 'danceacademy',
     component: DashboardComponent,
     canActivate: [authGuard],
@@ -25,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/danceacademy/home',
+    redirectTo: '/auth',
+    pathMatch: 'full',
   },
 ];
 

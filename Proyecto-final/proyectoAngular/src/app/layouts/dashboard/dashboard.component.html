@@ -24,6 +24,10 @@
                     </button>
                     <span>Dance Academy</span>
                 </div>
+
+                @if (authUser$ | async; as user){
+                <div>{{ user?.firstName}}</div>
+                }
             </div>
 
         </mat-toolbar>
